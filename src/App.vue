@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <SheetSelector
+    <EntitySelector
+      @update-selected="changeCharacter"
+      v-bind:selectedEntityId=selectedCharacterId
+      v-bind:entities=characters
+    />
+    <EntitySelector
       @update-selected="changeSheet"
-      v-bind:selectedSheetId=selectedSheetId
-      v-bind:sheets=sheets
+      v-bind:selectedEntityId=selectedSheetId
+      v-bind:entities=sheets
     />
-    <SingleSheet
-      v-if="!isTabbedSheet()"
+    <Sheet
       v-bind:sheet=selectedSheet
-    />
-    <TabbedSheet
-      v-if="isTabbedSheet()"
-      v-bind:sheet=selectedSheet
+      v-bind:character=selectedCharacter
     />
   </div>
 </template>
@@ -28,48 +29,46 @@ import {
   Vue,
 } from 'vue-property-decorator';
 
-import SheetSelector from './components/SheetSelector.vue';
-import SingleSheet from './components/SingleSheet.vue';
-import TabbedSheet from './components/TabbedSheet.vue';
+import EntitySelector from './components/EntitySelector.vue';
+import Sheet from './components/Sheet.vue';
 
 import {
+  Character,
   RootState,
-  SingleSheet as SingleSheetShape,
-  TabbedSheet as TabbedSheetShape,
+  SheetTemplate,
 } from './types';
 
 @Component({
   components: {
-    SheetSelector,
-    SingleSheet,
-    TabbedSheet,
+    EntitySelector,
+    Sheet,
   },
   computed: {
     ...mapState([
+      'selectedCharacterId',
       'selectedSheetId',
+      'characters',
       'sheets',
     ]),
     ...mapGetters([
+      'selectedCharacter',
       'selectedSheet',
     ]),
   },
   methods: {
     ...mapMutations([
+      'changeCharacter',
       'changeSheet',
     ]),
   },
 })
 export default class App extends Vue {
+  private selectedCharacterId!: string;
   private selectedSheetId!: string;
+  private characters!: Extract<RootState, 'characters'>;
   private sheets!: Extract<RootState, 'sheets'>;
-  private selectedSheet!: SingleSheetShape | TabbedSheetShape;
-  private isTabbedSheet () {
-    if ((this.selectedSheet as TabbedSheetShape).tabs) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  private selectedCharacter!: Character;
+  private selectedSheet!: SheetTemplate;
 }
 </script>
 
