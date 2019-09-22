@@ -31,6 +31,8 @@ export interface SheetTemplate extends Entity {
 }
 
 export interface RootState {
+  selectedCharacterId: string;
   selectedSheetId: string;
-  sheets: Array<SingleSheet | TabbedSheet>;
+  characters: Character[];
+  sheets: SheetTemplate[];
 }
