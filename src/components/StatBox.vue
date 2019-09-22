@@ -21,13 +21,13 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-import { BaseStat, ConstrainedStat } from '../types';
+import { Stat, ConstrainedStat } from '../types';
 
 @Component({
   name: 'StatBox',
 })
 export default class StatBox extends Vue {
-  @Prop() private stat!: BaseStat;
+  @Prop() private stat!: Stat;
 
   private isConstrained (): boolean {
     if (typeof (this.stat as ConstrainedStat).maxValue === 'number') {
