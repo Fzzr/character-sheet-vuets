@@ -1,20 +1,14 @@
 <template>
   <div
     class="StatsSection"
-    v-bind:baseStats="baseStats"
-    v-bind:constrainedStats="constrainedStats"
     v-bind:section="section"
+    v-bind:stats="stats"
   >
     <span>{{section.name}}</span>
     <StatBox
-      v-for="statId in section.constrainedStats"
+      v-for="statId in section.statIds"
       :key="statId"
-      v-bind:stat="findStat(statId, constrainedStats)"
-    />
-    <StatBox
-      v-for="statId in section.baseStats"
-      :key="statId"
-      v-bind:stat="findStat(statId, baseStats)"
+      v-bind:stat="findStat(statId, stats)"
     />
   </div>
 </template>
@@ -24,7 +18,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 import StatBox from './StatBox.vue';
 
-import { BaseStat, ConstrainedStat, Section } from '../types';
+import { Section, Stat } from '../types';
 
 @Component({
   components: {
@@ -33,18 +27,17 @@ import { BaseStat, ConstrainedStat, Section } from '../types';
   name: 'StatsSection',
 })
 export default class StatsSection extends Vue {
-  @Prop() private baseStats!: BaseStat[];
-  @Prop() private constrainedStats!: ConstrainedStat[];
   @Prop() private section!: Section;
+  @Prop() private stats!: Stat[];
 
-  private findStat (statId: string, statList: BaseStat[]): BaseStat {
-    const emptyStat: BaseStat = {
+  private findStat (statId: string, statList: Stat[]): Stat {
+    const emptyStat: Stat = {
       id: '',
       name: '',
       value: 0,
     };
 
-    let stat: BaseStat | undefined = statList.find((checkStat) => {
+    let stat: Stat | undefined = statList.find((checkStat) => {
       return checkStat.id === statId;
     });
 
