@@ -2,10 +2,9 @@ import Vue from 'vue';
 import Vuex, { GetterTree, StoreOptions } from 'vuex';
 
 import {
-  BaseSheet,
+  Character,
   RootState,
-  SingleSheet,
-  TabbedSheet,
+  SheetTemplate,
 } from './types';
 
 import initialState from './initialState';
@@ -15,14 +14,24 @@ Vue.use(Vuex);
 const store: StoreOptions<RootState> = {
   state: initialState,
   getters: {
-    selectedSheet: (state: RootState): SingleSheet | TabbedSheet | undefined => {
-      const selectedSheet = state.sheets.find((sheet: BaseSheet) => {
+    selectedCharacter: (state: RootState): Character | undefined => {
+      const selectedCharacter = state.characters.find((character: Character) => {
+        return character.id === state.selectedCharacterId;
+      });
+      return selectedCharacter;
+    },
+    selectedSheet: (state: RootState): SheetTemplate | undefined => {
+      const selectedSheet = state.sheets.find((sheet: SheetTemplate) => {
         return sheet.id === state.selectedSheetId;
       });
       return selectedSheet;
     },
   },
   mutations: {
+    changeCharacter (state, payload: string) {
+      const selectedCharacterId = payload;
+      state.selectedCharacterId = selectedCharacterId;
+    },
     changeSheet (state, payload: string) {
       const selectedSheetId = payload;
       state.selectedSheetId = selectedSheetId;
