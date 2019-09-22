@@ -11,6 +11,8 @@ export interface ConstrainedStat extends BaseStat {
   maxValue: number;
 }
 
+export type Stat = BaseStat | ConstrainedStat;
+
 export interface Section {
   baseStats: string[];
   constrainedStats: string[];
