@@ -25,19 +25,9 @@ export interface Tab extends Entity {
   sections: Section[];
 }
 
-export interface BaseSheet {
-  id: string;
-  name: string;
-  baseStats: BaseStat[];
-  constrainedStats: ConstrainedStat[];
-}
-
-export interface SingleSheet extends BaseSheet {
-  sections: Section[];
-}
-
-export interface TabbedSheet extends BaseSheet {
-  tabs: Tab[];
+export interface SheetTemplate extends Entity {
+  sections?: Section[];
+  tabs?: Tab[];
 }
 
 export interface RootState {
