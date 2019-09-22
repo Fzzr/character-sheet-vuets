@@ -1,14 +1,14 @@
 <template>
   <select
-    :value="selectedSheetId"
+    :value="selectedEntityId"
     @change="updateSelected"
   >
     <option
-      v-for="sheet in sheets"
-      :key="sheet.id"
-      v-bind:value="sheet.id"
+      v-for="entity in entities"
+      :key="entity.id"
+      v-bind:value="entity.id"
     >
-      {{sheet.name}}
+      {{entity.name}}
     </option>
   </select>
 </template>
@@ -16,14 +16,14 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 
-import { RootState } from '../types';
+import { Entity } from '../types';
 
 @Component({
-  name: 'SheetSelector',
+  name: 'EntitySelector',
 })
 export default class SheetSelector extends Vue {
-  @Prop() private selectedSheetId!: string;
-  @Prop() private sheets!: Extract<RootState, 'sheets'>;
+  @Prop() private selectedEntityId!: string;
+  @Prop() private entities!: Entity[];
 
   @Emit()
   private updateSelected (event: Event) {
