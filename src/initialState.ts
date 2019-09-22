@@ -1,13 +1,14 @@
 import { RootState } from './types';
 
 const initialState: RootState = {
-  selectedSheetId: 'single-sheet-0',
-  sheets:
+  selectedCharacterId: 'stronk',
+  selectedSheetId: 'sections-only',
+  characters:
   [
     {
-      id: 'single-sheet-0',
-      name: 'Split by Constrained/Base - Single',
-      baseStats:
+      id: 'stronk',
+      name: 'Stronk',
+      stats:
       [
         {
           id: 'strength',
@@ -19,9 +20,6 @@ const initialState: RootState = {
           name: 'Dexterity',
           value: 12,
         },
-      ],
-      constrainedStats:
-      [
         {
           id: 'hp',
           name: 'HP',
@@ -35,211 +33,131 @@ const initialState: RootState = {
           maxValue: 0,
         },
       ],
+    },
+  ],
+  sheets:
+  [
+    {
+      id: 'sections-only',
+      name: 'Sections Only Sheet',
       sections: [
         {
-          baseStats: [],
-          constrainedStats:
+          id: 'constrained-secton',
+          statIds:
           [
             'hp',
             'initiative',
           ],
-          name: 'Constrained',
+          name: 'Constrained Section',
         },
         {
-          baseStats: [
+          id: 'base-section',
+          statIds:
+          [
             'strength',
             'dexterity',
           ],
-          constrainedStats: [],
-          name: 'Base',
+          name: 'Base Section',
         },
       ],
     },
     {
-      id: 'single-sheet-1',
-      name: 'Split By Offense/Defense - Single',
-      baseStats:
+      id: 'tabs-only',
+      name: 'Tabs Only Sheet',
+      tabs:
       [
         {
-          id: 'strength',
-          name: 'Strength',
-          value: 14,
+          id: 'one-section',
+          name: 'One Section Tab',
+          sections:
+          [
+            {
+              id: 'only-section',
+              name: 'Only Section',
+              statIds:
+              [
+                'strength',
+                'dexterity',
+              ],
+            },
+          ],
         },
         {
-          id: 'dexterity',
-          name: 'Dexterity',
-          value: 12,
+          id: 'two-sections',
+          name: 'Two Section Tab',
+          sections:
+          [
+            {
+              id: 'hp-section',
+              name: 'HP Section',
+              statIds:
+              [
+                'hp',
+              ],
+            },
+            {
+              id: 'initiative-section',
+              name: 'Initiative Section',
+              statIds:
+              [
+                'initiative',
+              ],
+            },
+          ],
         },
       ],
-      constrainedStats:
-      [
-        {
-          id: 'hp',
-          name: 'HP',
-          value: 30,
-          maxValue: 90,
-        },
-        {
-          id: 'initiative',
-          name: 'Initiative',
-          value: 0,
-          maxValue: 10,
-        },
-      ],
+    },
+    {
+      id: 'sections-and-tabs',
+      name: 'Sections and Tabs Sheet',
       sections:
       [
         {
-          baseStats:
-          [
-            'strength',
-          ],
-          constrainedStats:
+          id: 'hp-section',
+          name: 'HP Section',
+          statIds:
           [
             'hp',
           ],
-          name: 'Offense',
         },
         {
-          baseStats:
-          [
-            'dexterity',
-          ],
-          constrainedStats:
+          id: 'initiative-section',
+          name: 'Initiative Section',
+          statIds:
           [
             'initiative',
           ],
-          name: 'Defense',
-        },
-      ],
-    },
-    {
-      id: 'tabbed-sheet-0',
-      name: 'Split by Constrained/Base - Tabbed',
-      baseStats:
-      [
-        {
-          id: 'strength',
-          name: 'Strength',
-          value: 12,
-        },
-        {
-          id: 'dexterity',
-          name: 'Dexterity',
-          value: 10,
-        },
-      ],
-      constrainedStats:
-      [
-        {
-          id: 'hp',
-          name: 'HP',
-          value: 50,
-          maxValue: 100,
-        },
-        {
-          id: 'initiative',
-          name: 'Initiative',
-          value: 55,
-          maxValue: 55,
         },
       ],
       tabs:
       [
         {
-          id: 'constrained',
-          name: 'Constrained Stats',
-          sections: [
+          id: 'strength-tab',
+          name: 'Strength Tab',
+          sections:
+          [
             {
-              baseStats: [],
-              constrainedStats:
-              [
-                'hp',
-                'initiative',
-              ],
-              name: 'Constrained',
-            },
-          ],
-        },
-        {
-          id: 'base',
-          name: 'Base Stats',
-          sections: [
-            {
-              baseStats: [
-                'strength',
-                'dexterity',
-              ],
-              constrainedStats: [],
-              name: 'Base',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: 'tabbed-sheet-1',
-      name: 'Split By Offense/Defense - Tabbed',
-      baseStats:
-      [
-        {
-          id: 'strength',
-          name: 'Strength',
-          value: 12,
-        },
-        {
-          id: 'dexterity',
-          name: 'Dexterity',
-          value: 10,
-        },
-      ],
-      constrainedStats:
-      [
-        {
-          id: 'hp',
-          name: 'HP',
-          value: 20,
-          maxValue: 20,
-        },
-        {
-          id: 'initiative',
-          name: 'Initiative',
-          value: 5,
-          maxValue: 6,
-        },
-      ],
-      tabs:
-      [
-        {
-          id: 'physical',
-          name: 'Offense Stats',
-          sections: [
-            {
-              baseStats:
+              id: 'strength-section',
+              name: 'Strength Section',
+              statIds:
               [
                 'strength',
               ],
-              constrainedStats:
-              [
-                'hp',
-              ],
-              name: 'Offense',
             },
           ],
         },
         {
-          id: 'mental',
-          name: 'Defense Stats',
-          sections: [
+          id: 'dexterity-tab',
+          name: 'Dexterity Tab',
+          sections:
+          [
             {
-              baseStats:
+              id: 'dexterity-section',
+              name: 'Dexterity Section',
+              statIds:
               [
                 'dexterity',
               ],
-              constrainedStats:
-              [
-                'initiative',
-              ],
-              name: 'Defense',
             },
           ],
         },
