@@ -18,9 +18,8 @@ export interface Character extends Entity {
 }
 
 export interface Section {
-  baseStats: string[];
-  constrainedStats: string[];
   name: string;
+  statIds: string[];
 }
 
 export interface Tab {
