@@ -1,6 +1,9 @@
-export interface BaseStat {
-  id: string;
+export interface Entity {
+  readonly id: string;
   name: string;
+}
+
+export interface BaseStat extends Entity {
   value: number;
 }
 
