@@ -17,14 +17,11 @@ export interface Character extends Entity {
   stats: Stat[];
 }
 
-export interface Section {
-  name: string;
+export interface Section extends Entity {
   statIds: string[];
 }
 
-export interface Tab {
-  id: string;
-  name: string;
+export interface Tab extends Entity {
   sections: Section[];
 }
 
