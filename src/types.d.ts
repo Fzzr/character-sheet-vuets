@@ -13,6 +13,10 @@ export interface ConstrainedStat extends BaseStat {
 
 export type Stat = BaseStat | ConstrainedStat;
 
+export interface Character extends Entity {
+  stats: Stat[];
+}
+
 export interface Section {
   baseStats: string[];
   constrainedStats: string[];
