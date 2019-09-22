@@ -29,8 +29,37 @@ const initialState: RootState = {
         {
           id: 'initiative',
           name: 'Initiative',
-          value: 5,
-          maxValue: 0,
+          value: 2,
+          maxValue: 10,
+        },
+      ],
+    },
+    {
+      id: 'weak',
+      name: 'Weak',
+      stats:
+      [
+        {
+          id: 'strength',
+          name: 'Strength',
+          value: 4,
+        },
+        {
+          id: 'dexterity',
+          name: 'Dexterity',
+          value: 6,
+        },
+        {
+          id: 'hp',
+          name: 'HP',
+          value: 10,
+          maxValue: 10,
+        },
+        {
+          id: 'initiative',
+          name: 'Initiative',
+          value: 1,
+          maxValue: 2,
         },
       ],
     },
