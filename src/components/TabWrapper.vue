@@ -2,6 +2,7 @@
   <div
     class="TabsWrapper"
     v-bind:tabs="tabs"
+    v-bind:character="character"
   >
     <div class="TabPickerWrapper">
       <TabPicker
@@ -16,8 +17,7 @@
     </div>
     <Tab
       v-for="(tab, index) in tabs"
-      v-bind:baseStats="baseStats"
-      v-bind:constrainedStats="constrainedStats"
+      v-bind:character="character"
       v-bind:selected="index === selectedTab"
       v-bind:tab="tab"
       :key="tab.name"
@@ -28,8 +28,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import {
-  BaseStat,
-  ConstrainedStat,
+  Character,
   Tab as TabShape,
 } from '../types';
 
@@ -44,8 +43,7 @@ import TabPicker from './TabPicker.vue';
   name: 'TabWrapper',
 })
 export default class TabWrapper extends Vue {
-  @Prop() private baseStats!: BaseStat[];
-  @Prop() private constrainedStats!: ConstrainedStat[];
+  @Prop() private character!: Character;
   @Prop() private tabs!: TabShape;
 
   private selectedTab = 0;

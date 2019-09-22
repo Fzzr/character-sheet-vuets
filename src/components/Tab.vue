@@ -3,8 +3,7 @@
     class="Tab"
     v-bind:class="{ Selected: selected }"
     v-bind:tab="tab"
-    v-bind:baseStats="baseStats"
-    v-bind:constrainedStats="constrainedStats"
+    v-bind:character="character"
   >
     <div
       class="Name"
@@ -14,8 +13,7 @@
     <StatSection
       v-for="(section, index) in tab.sections"
       :key="index"
-      v-bind:baseStats="baseStats"
-      v-bind:constrainedStats="constrainedStats"
+      v-bind:stats="character.stats"
       v-bind:section="section"
     />
   </div>
@@ -26,7 +24,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 import StatSection from './StatSection.vue';
 
-import { BaseStat, ConstrainedStat, Tab as TabShape } from '../types';
+import { Character, Tab as TabShape } from '../types';
 
 @Component({
   components: {
@@ -35,8 +33,7 @@ import { BaseStat, ConstrainedStat, Tab as TabShape } from '../types';
   name: 'Tab',
 })
 export default class Tab extends Vue {
-  @Prop() private baseStats!: BaseStat[];
-  @Prop() private constrainedStats!: ConstrainedStat[];
+  @Prop() private character!: Character;
   @Prop() private selected!: boolean;
   @Prop() private tab!: TabShape;
 }
